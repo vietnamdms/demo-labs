@@ -4,7 +4,7 @@ description: "Tạo hoặc tiếp tục clip trên Google Flow từ cặp start/
 ---
 
 # Video Flow Generate
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Đọc [hợp đồng renders](../video-workflow/references/contracts.md#rendersjson) và [quy trình Flow](references/flow-runbook.md) trước khi thực thi. Nhận shotlist, cặp frame, animatic/timing và phạm vi chi phí đã cho phép.
 
@@ -24,6 +24,14 @@ Updated: 2026-10-17 11:03 +07
 5. Theo dõi submitted/running/succeeded/failed/unknown/downloaded. Không coi timeout là thất bại chắc chắn. Khi lấy file, xác nhận clip đúng take và mở được.
 6. Xem toàn clip, nghe âm thanh; kiểm tra nhận diện, hành động, chi tiết xuyên thời gian, frame thực tế tại điểm cắt và thoại nếu có. Không chỉ kiểm tra thumbnail.
 7. Chọn take nếu đạt yêu cầu. Nếu lỗi, phân loại frame/prompt/model để sửa có mục đích; dừng khi chạm giới hạn. Ghi selected và review riêng với trạng thái job.
+
+## Review clip theo nội dung
+
+Dùng chức năng beat, `purpose`/`story_action` của shot và profile vai diễn để soạn prompt. Nêu ai hành động/nói, phản ứng nào cần thấy và trạng thái kết thúc; giữ thoại đã chốt. Không yêu cầu model tự thêm câu bán hàng hoặc kết quả ngoài script.
+
+Khi xem take, xác nhận đúng người nói, câu thoại, phản ứng và trình tự phát hiện → quyết định. Kiểm tra trạng thái thật tại điểm trim: clip không được cắt mất hành động tạo payoff hoặc biến minh họa thành bằng chứng hiệu quả. Ghi tại `review.notes` điều đã quan sát và lỗi còn lại; thành công của job, hình đẹp hoặc audio có tiếng chưa đủ để chọn take.
+
+Lỗi ý nghĩa bắt đầu từ script/shot thì sửa ở nguồn và cập nhật dependency trước render lại. Lỗi thực hiện của model thì sửa prompt/timing trong ngân sách đã có. Giữ mọi giới hạn về retry, trạng thái unknown và credit ở quy trình trên.
 
 ## Bàn giao
 

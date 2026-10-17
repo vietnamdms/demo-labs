@@ -4,7 +4,7 @@ description: "Tạo và sửa cặp start frame/end frame cho từng shot trong 
 ---
 
 # Video Storyboard Frames
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Đọc [hợp đồng frames](../video-workflow/references/contracts.md#framesjson) và [frame-direction.md](references/frame-direction.md). Đầu vào là shotlist, assets và các ảnh hiện có; không tự dựng một câu chuyện mới từ prompt ảnh rời.
 
@@ -17,6 +17,14 @@ Updated: 2026-10-17 11:03 +07
 5. So sánh cặp ảnh: khuôn mặt/trang phục/đạo cụ, số lượng chủ thể, hướng nhìn, vị trí, ánh sáng, tỉ lệ và khả năng chuyển động trong thời gian shot.
 6. Cảnh đổi góc dùng bố cục mới với cùng trạng thái câu chuyện; cảnh nối liên tục mới cân nhắc chia sẻ frame. Giữ hai đường dẫn trong record dù cùng tham chiếu một file hợp lệ.
 7. Lưu ảnh, prompt, phiên bản tham chiếu, frames.json và bảng tổng hợp storyboard có shot ID. Có thể dùng HTML gallery tham chiếu ảnh gốc để xem cạnh nhau; không cần sửa pixel để tạo bảng.
+
+## Ý nghĩa của cặp frame
+
+Đối chiếu `purpose`/`story_action` với script: frame đầu cho thấy trạng thái trước hành động, frame cuối cho thấy trạng thái sau đủ để hiểu chức năng shot. Giữ điểm nhìn, biểu cảm và đạo cụ hỗ trợ phát hiện hoặc lựa chọn của nhân vật. Shot tĩnh/giải thích có thể giữ cùng trạng thái; không thêm biến cố chỉ để hai frame khác nhau.
+
+Với chi tiết được nhắc lại ở payoff, kiểm tra trạng thái xuyên các shot liên quan; không tự thêm/bỏ đạo cụ giữa chừng. Chừa khoảng cho chữ hậu kỳ, giữ hình mô phỏng khác với kết quả thật. Ảnh nhân vật vui hoặc màn hình mượt không được ngầm chứng minh sản phẩm đã chữa lỗi nếu script chỉ gợi ý kiểm tra.
+
+Ghi review về ý nghĩa bên cạnh nhận diện/kỹ thuật. Nếu hình đẹp nhưng không thể hiện đúng hành động, sửa đúng frame; nếu mục tiêu shot mâu thuẫn, trả về shotlist/script thay vì tự viết lại câu chuyện qua prompt.
 
 ## Tiêu chí
 

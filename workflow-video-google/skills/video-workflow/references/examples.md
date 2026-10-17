@@ -1,5 +1,5 @@
 # Hai tình huống dùng bộ skill
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 ## Short: chiếc tách bị bỏ quên
 
@@ -24,3 +24,17 @@ Lời dẫn đi qua nhiều shot. Phân shot dựa trên bản đọc và nội 
 - Đổi vị trí tách cuối S03: revise frame.S03.end; clip S03 và animatic/final phụ thuộc bị đánh dấu lại. S01 không đổi nếu không phụ thuộc S03.
 - Đổi giọng lời dẫn mà giữ lời: đo timing mới; chỉ shot/timeline liên quan bị ảnh hưởng. Clip ambient có thể giữ nếu khớp thời gian sau chỉnh.
 - UI không trả kết quả sau submit: ghi unknown và dấu vết take. Khi tiếp tục, kiểm tra project Flow trước khi gửi lần nữa.
+
+## Chuyển một bài hướng dẫn thành tiểu phẩm hai vai
+
+Tình huống minh họa: người chơi thấy game giật, định đổi router. Một vai đại diện người xem, một vai giúp kiểm tra. Đây là concept hư cấu; nhận định kỹ thuật phải lấy nguồn riêng khi viết script thật.
+
+Content strategy: khán giả đang vội chọn cách sửa; lợi ích là biết cần kiểm tra gì trước; ý chính là nhìn cả FPS và ping; giai đoạn nhận thức nếu brief marketing; narrative_mode=story. Đầu câu chuyện người chơi dán nhãn “ĐỔI!” lên thiết bị; giữa câu chuyện tự phát hiện dấu hiệu và hỏi thêm; cuối gỡ nhãn, quyết định đo trước. Phát hiện có vai trò thật, không chỉ một người giải thích rồi người kia gật đầu.
+
+Nếu brief yêu cầu giáo dục, CTA có thể dẫn tới bài hướng dẫn cụ thể. Nếu brief yêu cầu giới thiệu sản phẩm, làm rõ trường hợp sản phẩm phù hợp bằng nguồn, không tự loại mục tiêu đó để giữ cấu trúc mẫu. Không mặc định các tính cách hoặc ngoại hình đề xuất là nhận diện thương hiệu chính thức.
+
+Bàn giao: characters/speaker_id nhất quán; shot ghi rõ ai nói/ai phản ứng; props_state giữ nhãn qua các shot tới lúc gỡ; frame cuối và clip tại điểm cắt phải thể hiện đúng hành động. Không thêm cảnh hết giật làm bằng chứng cho việc mới chỉ kiểm tra. Khung 40 giây nếu dùng là ước tính, phải đo lại lời và khoảng phản ứng.
+
+## Nội dung hướng dẫn không có nhân vật
+
+Brief: video chỉ cách tổ chức tệp làm việc, không marketing, không nhân vật. Dùng narrative_mode=tutorial, journey_stage=not-applicable, story=null và primary_cta=null nếu bước kiểm tra kết quả đã đủ kết thúc. Hook nêu lợi ích, các bước thể hiện bằng giao diện thật hoặc hình minh họa có nhãn, payoff cho biết cách kiểm tra thư mục đã tổ chức đúng. Không thêm mâu thuẫn nhân vật hoặc lời mời mua chỉ để điền content_strategy.

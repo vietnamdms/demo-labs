@@ -4,7 +4,7 @@ description: "Viết hoặc sửa kịch bản YouTube dài cho workflow storybo
 ---
 
 # Video Script YouTube
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Đọc [hợp đồng script](../video-workflow/references/contracts.md#scriptjson) khi xuất dữ liệu. Dùng [hướng dẫn chương](references/writing.md) khi cấu trúc video dài.
 
@@ -17,6 +17,14 @@ Updated: 2026-10-17 11:03 +07
 5. Viết đầy đủ spoken/visual cho từng beat: hook, content, payoff và ending. Ví dụ, dẫn chứng và chuyển ý phải được viết thật. Chia công việc thành từng chương nếu dài nhưng hoàn thành toàn bộ phạm vi đã yêu cầu.
 6. Ghi thời lượng estimated; tách lời dẫn liên tục khỏi hình minh họa. Một câu có thể phủ qua nhiều shot. Sau bản đọc thử, sửa nhịp chứ không tăng tốc giọng để ép khớp máy móc.
 7. Xuất script.json và script.md cùng version, có concept title/thumbnail, chapter map, hook liên kết payoff, nguồn cho tuyên bố thực tế.
+
+## Tiến trình nội dung dài
+
+Dùng [thiết kế nội dung](../video-workflow/references/content-strategy.md) để chốt `content_strategy`, câu hỏi trung tâm, lợi ích và cách kể. Giai đoạn hành trình chỉ dùng cho nội dung marketing. Tiêu đề, thumbnail concept và hook cùng hứa một kết quả mà video thực sự có thể cung cấp.
+
+Mỗi chương xác định `viewer_question`, `takeaway`, `evidence_plan` và `transition_reason` theo hợp đồng. Viết ví dụ, giải thích và kết luận nhỏ thành các beat thật; nếu còn thiếu bằng chứng, nêu điều chưa xác định hoặc diễn đạt thành kế hoạch, không trình bày như kết quả đã có. Chương sau phát triển điều người xem vừa hiểu.
+
+Với nhiều nhân vật, dùng `characters` và `speaker_id` theo [hợp đồng thoại](../video-workflow/references/contracts.md). Cho từng vai đóng góp phát hiện/thử nghiệm/quyết định theo câu chuyện; giữ giọng và quan hệ nhất quán. CTA giúp thực hiện bước tiếp theo; không tự thêm lời mời mua hoặc đăng ký vào mọi chương.
 
 ## Kiểm tra
 

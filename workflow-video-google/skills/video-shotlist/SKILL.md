@@ -4,7 +4,7 @@ description: "Phân kịch bản video thành scene và shot có ID, thời lư�
 ---
 
 # Video Shotlist
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Nhận script và brief; đọc [hợp đồng shotlist](../video-workflow/references/contracts.md#shotlistjson). Dùng [continuity.md](references/continuity.md) khi có nối hành động/đổi góc.
 
@@ -17,6 +17,14 @@ Nhận script và brief; đọc [hợp đồng shotlist](../video-workflow/refer
 5. Ghi duration_s là thời gian dùng trong bản dựng; generation_duration_s là thời gian xin tạo, để null khi chưa biết model. Chừa trim handles khi cần, đừng đưa tất cả thời lượng tạo vào bản cuối.
 6. Nháp dùng timing_basis=estimated. Khi có audio-plan đã đo, phân bổ shot theo cue và cập nhật timing_basis=measured. Video không lời có thể dùng action; không tự tạo lời dẫn để đủ biểu mẫu.
 7. Với cảnh liên tục, kiểm tra hướng chuyển động, hướng nhìn, vị trí tay/đạo cụ, ánh sáng; chỉ dùng lại end frame cho shot sau khi góc máy và hành động thực sự phù hợp.
+
+## Chuyển ý nghĩa thành hình ảnh
+
+Đọc `script.content_strategy` và chức năng các beat trước khi chọn góc. Viết `purpose` bằng điều shot giúp người xem nhận ra; `story_action` là hành động nhìn thấy thực hiện mục đích đó. Với shot giải thích, sơ đồ hoặc chi tiết được chỉ ra cũng có thể thực hiện chức năng này, không cần thêm diễn xuất.
+
+Mô tả phản ứng sau thông tin quan trọng và thời gian cho payoff. Khi một đạo cụ liên kết đầu–cuối, ghi trạng thái qua các shot tại `continuity.props_state`; giữ nguyên nếu chưa có hành động đổi. Đánh dấu ví dụ giả định, hình mô phỏng và bằng chứng thực khác nhau trong visual/notes.
+
+Đối chiếu `speaker_id`, lời thoại và cue với script/audio-plan. Giữ nguyên người nói khi đổi góc; shot phản ứng có thể để người nói ngoài khung, phải ghi rõ. Nếu một shot chứa nhiều lượt thoại, dùng danh sách cue theo thứ tự thay vì gán toàn bộ lời cho một vai. Không gộp phản ứng hoặc cắt phần giải thích làm thay đổi ý nghĩa.
 
 ## Đầu ra và kiểm tra
 

@@ -1,5 +1,5 @@
 # Dựng theo ba chế độ
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 ## Chuẩn bị âm thanh
 
@@ -33,3 +33,13 @@ Chọn export theo brief; kiểm tra duration, ratio, fps, codec và streams b�
 Scenebuilder có thể sắp xếp, trim, preview và download scene theo [tài liệu Google](https://support.google.com/flow/answer/16935718?hl=en). Không coi đó là xác nhận mọi tính năng mix/subtitle đều có.
 
 Animatic dựa trên thực hành storyboard có thời gian, xem [Adobe](https://www.adobe.com/creativecloud/animation/discover/animation.html). Không thể đo chất lượng video AI hoặc retention thực tế từ animatic.
+
+## Nhịp câu chuyện và CTA
+
+Dành thời gian cho phát hiện và phản ứng, nhất là ở payoff. Đối chiếu âm thanh/hình ảnh: hiệu ứng chiến thắng, nhạc giải tỏa hoặc gameplay mượt đặt ngay sau sản phẩm có thể tạo kết luận hiệu quả mà script không có. Điều chỉnh dựng để giữ đúng mức chắc chắn của nội dung.
+
+Với nhiều vai, giữ speaker_id qua script → cue → shot. Nghe lượt chuyển vai và phát âm; hình phản ứng có thể đi với lời ngoài khung nếu chủ ý rõ. Cue mới hoặc câu rút gọn cần cập nhật nguồn chuẩn, không chỉ sửa phụ đề.
+
+CTA nếu có phải đọc được ở bản xuất theo tỉ lệ đích, nói rõ lợi ích và chỉ tới tài nguyên thật. Mời đọc một bài cụ thể có thể rõ hơn chỉ nói “xem blog”; không giả định link bấm được hay link trong bio chưa xác minh.
+
+Khi bàn giao kế hoạch đo theo yêu cầu, phân biệt điều người biên tập đã quan sát với phản hồi người xem chưa có. Lấy khung đo tại [content-strategy.md](../../video-workflow/references/content-strategy.md); không tự triển khai phân phối.

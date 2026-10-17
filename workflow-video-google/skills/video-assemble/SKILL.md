@@ -4,7 +4,7 @@ description: "Chuẩn bị lời dẫn và timing, dựng animatic từ cặp fr
 ---
 
 # Video Assemble
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Chọn đúng mode `prepare-audio`, `animatic`, `final` theo yêu cầu và đầu ra hiện có. Đọc [hợp đồng audio/edit](../video-workflow/references/contracts.md#audio-planjson), rồi [assembly.md](references/assembly.md) cho mode đang làm.
 
@@ -35,6 +35,16 @@ Nhận selected takes và audio final nếu brief cần. Chọn công cụ dựn
 Kiểm tra khả năng công cụ trước khi hứa hiệu ứng/mix/subtitles. Flow Scenebuilder có thể dùng cho thao tác được hỗ trợ; các yêu cầu còn lại thực hiện bằng editor/FFmpeg phù hợp. Helper animatic không phải renderer final.
 
 Xuất edit-plan.json mode final và file video thực. Kiểm tra metadata, phát/xem toàn bộ, nghe âm thanh, soát chữ tiếng Việt, nhịp nối và hook/payoff. Nếu thiếu khả năng xem/nghe, ghi phần chưa kiểm tra; không tuyên bố đã đạt kiểm tra cảm quan từ ffprobe.
+
+## Biên tập nội dung và bàn giao học hỏi
+
+Đối chiếu `script.content_strategy`, hook/payoff và vai trò shot khi dựng. Giữ khoảng ngừng để người xem nhận ra phát hiện, phản ứng hoặc kết quả. Có thể rút lời lặp hoặc cảnh thừa, nhưng thay đổi lời/ý phải cập nhật script và các cue liên quan trước khi coi bản dựng đồng bộ.
+
+Với nhiều vai, đo/nghe từng lượt nói, kiểm tra speaker/track/cue và khoảng chuyển lượt. Bản dựng không được đổi người nói bằng cách đặt tiếng lên khuôn mặt đang nói lời khác. Nhịp cắt, nhạc và hình sau thao tác không được tạo cảm giác đã chứng minh hiệu quả khi chỉ có ví dụ giả định.
+
+Kiểm tra CTA nếu có: người xem biết hành động, lợi ích và đích đến; chữ đủ đọc và đúng tài nguyên thực. Ghi nhận xét biên tập cụ thể thay cho điểm số tùy ý hoặc hứa viral. Animatic chỉ giúp đánh giá nhịp và khả năng hiểu, không chứng minh retention.
+
+Nếu được giao đánh giá hiệu quả, dùng mục đo lường trong [thiết kế nội dung](../video-workflow/references/content-strategy.md): ghi giả thuyết, tín hiệu theo mục tiêu, baseline/kết quả còn thiếu. Không tự đăng, tạo automation hoặc gửi thông điệp để thu thập dữ liệu.
 
 ## Trạng thái
 

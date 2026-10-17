@@ -1,5 +1,5 @@
 # Hợp đồng dữ liệu v1.0
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Đây là nguồn chuẩn dùng chung của bộ 8 skill. Đọc phần đang xử lý; không cần nạp mọi ví dụ. Lưu project riêng với thư mục skill. JSON UTF-8, schema_version="1.0", số thời gian tính bằng giây. Không dùng 0 để biểu thị giá trị chưa biết: dùng null.
 
@@ -68,6 +68,48 @@ chapters[]: chapter_id, title, purpose. Short thường là []; long có ít nh�
 
 Nguồn chuẩn nội dung là script.json; script.md là bản trình bày sinh từ JSON. Nếu người dùng sửa Markdown, nhập lại thay đổi vào JSON và tăng version trước downstream. Không sửa hai bản độc lập rồi coi chúng đồng bộ. Script đầy đủ không được thay bằng tóm tắt.
 
+### Content strategy
+
+Mở rộng biên tập tương thích schema_version="1.0": dùng cho project mới hoặc khi sửa nội dung có ý nghĩa; không bắt project cũ điền lại chỉ để tiếp tục render. Helper hiện chưa kiểm tra các trường mở rộng này; skill phải rà soát ngữ nghĩa và liên kết vai/thoại. Không xem `validate` pass là đã duyệt nội dung.
+
+Nguồn chuẩn quyết định biên tập là `script.content_strategy`; bản Markdown trình bày tóm tắt quyết định này cùng hook/payoff. Ví dụ sau chỉ là object mở rộng, không phải một script đầy đủ:
+
+```json
+{
+  "audience_situation": "Người chơi thấy game giật và định đổi router trước khi kiểm tra",
+  "audience_need": "Biết cần kiểm tra gì trước khi chọn cách xử lý",
+  "audience_basis": "Giả định sáng tạo từ brief, chưa khảo sát người xem",
+  "journey_stage": "awareness",
+  "core_takeaway": "Nhìn cả FPS và ping trước khi chọn hướng xử lý",
+  "narrative_mode": "story",
+  "story": {
+    "protagonist_id": "tiny.gray",
+    "goal": "Chơi ổn định và tránh mua nhầm thiết bị",
+    "conflict": "Quy mọi biểu hiện giật cho Wi-Fi",
+    "discovery": "Nhận thấy FPS tụt dù ping đang ổn trong ví dụ",
+    "resolution": "Hoãn mua để kiểm tra trước"
+  },
+  "primary_cta": {
+    "action": "Đọc hướng dẫn kiểm tra",
+    "benefit": "Biết các bước khoanh vùng vấn đề",
+    "destination": "Bài hướng dẫn đã xác minh trong research của project"
+  },
+  "measurement_plan": null
+}
+```
+
+journey_stage: awareness/consideration/decision/not-applicable/unknown. narrative_mode: story/explanation/tutorial; chọn theo nhiệm vụ, không áp đặt mục tiêu marketing. Với explanation/tutorial, `story` có thể null; lời hứa và câu trả lời vẫn nằm ở hook/payoff. `primary_cta` có thể null nếu kết thúc không cần CTA. `measurement_plan`, khi nhiệm vụ cần, chứa hypothesis, signals[], baseline (null nếu chưa biết), observed_results (null trước đo). Không bịa mục tiêu, nghiên cứu khán giả hoặc kết quả.
+
+Beat có thể thêm `story_function` (chức năng của beat) và `viewer_change` (điều người xem hiểu/cảm/làm khác sau beat). Các trường này giải thích role hiện có, không thêm giá trị vào enum role. Chapter dài có thể thêm `viewer_question`, `takeaway`, `evidence_plan`, `transition_reason`; thông tin đang cần quay/đo phải được phân biệt với nguồn đã có trong source_urls.
+
+### Thoại và vai kể
+
+Với nhiều người nói, khai báo `script.characters[]`: character_id, name, proposed_role, confirmed_features[], voice_direction, asset_id (nullable khi chưa có asset). Character ID là định danh vai; asset_id nối đến bộ tham chiếu, không tự coi đã có ảnh. Narrator có thể là một vai riêng không có asset. Phân biệt mô tả nhân vật do người dùng xác nhận với đề xuất diễn xuất.
+
+Beat/cue có lời dùng `speaker_id` trỏ character_id tương ứng; beat im lặng có thể null. Với nhiều lượt nói, tách beat/cue có ID riêng để không nhét nhiều người vào một speaker_id. Độc thoại cũ không có characters vẫn hợp lệ; khi cần đối chiếu nhiều vai, chuẩn hóa mapping trước khi sản xuất thoại.
+
+Shot có một lượt thoại có thể ghi speaker_id/dialogue để đối chiếu; nhiều lượt trong shot dùng audio_cue_ids theo thứ tự, ghi người nói ngoài hình nếu cần. Script sở hữu lời chuẩn; audio-plan sở hữu cue/track và thời gian thực; shot không tự sửa lời. Skill rà speaker tồn tại, text khớp và cue thuộc beat của shot trước bàn giao.
+
 ## shotlist.json
 
 Required: timing_basis (estimated/measured/action), shots[].
@@ -78,11 +120,15 @@ continuity: screen_direction, eyeline, subject_positions, props_state, lighting.
 
 transition: type (cut/match-cut/continuous/dissolve/end), target_shot_id (null ở cuối). handles: head_s/tail_s >=0. Nếu generation_duration_s đã biết thì phải >= duration_s + handles; nếu dissolve chồng thời gian, edit-plan là nguồn timing cuối và phải ghi rõ chênh lệch với tổng shot thô.
 
+Có thể thêm `story_action` cho hành động nhìn thấy thực hiện purpose; đây không phải trường thay thế start_state/end_state/motion.
+
 Mọi beat phải có shot phủ nội dung, kể cả ending chữ/âm thanh. narration có thể đi qua nhiều shot, cue không phải đơn vị render. Đổi ý tưởng nội dung thì sửa script trước; đổi camera thì sửa shotlist.
 
 ## assets.json
 
 Required: assets[]. Entry: asset_id, type (character/product/prop/location/style), scope (series/episode/scene), description, fixed_features[], allowed_variations[], image_paths[], source_url (nullable), review. Ảnh ở references/ của project, không trùng references/ của skill. JSON/MD mô tả không thay thế ảnh tham chiếu.
+
+Character asset có thể thêm `performance_profile`: role, motivation, relationships, speech_style, reaction_style, allowed_emotional_changes, evidence_status. `evidence_status` phân biệt chi tiết được cung cấp với đề xuất. Nguồn chuẩn profile diễn xuất nằm ở assets.json; script chỉ giữ thông tin vai/giọng cần viết, nếu thay đổi phải đối chiếu và cập nhật profile. Trạng thái theo thời gian của đạo cụ thuộc shotlist, không thuộc fixed_features.
 
 ## frames.json
 
@@ -119,3 +165,11 @@ Timeline phải đủ toàn bộ nội dung; trim không vượt độ dài clip
 Helper project.py validate đọc các tài liệu chuẩn hiện có, kiểm tra IDs, dependency/version, ready file/review, hook→payoff, liên kết shot/frame/take và media path. Chưa có document của bước sau không là lỗi project nháp; bản final cần đủ đầu ra theo brief, do skill điều phối đánh giá.
 
 Sau sửa, revise tăng version artifact mục tiêu, đánh dấu mục tiêu và downstream needs-revision, review=unchecked. Không tự ghi dependency sang version mới: chỉ cập nhật sau khi thật sự kiểm tra/làm lại artifact đó. Backup manifest trước mọi mutation helper. Không xóa các take cũ.
+
+## Dependency cho nội dung tổng hợp
+
+Khi đăng ký beat scoped, `script` tổng hợp phải phụ thuộc mọi `beat.Bxx` hiện có và tài liệu vai diễn thực sự dùng. `script.readable` và `audio.plan` phụ thuộc script; `shot.Sxx` phụ thuộc beat/cue/asset thực sự dùng. Không đăng ký beat song song với script rồi bỏ mất cạnh phụ thuộc tổng hợp: sửa beat phải làm bản đọc và audio cần rà soát.
+
+Có thể đăng ký `strategy` là scope `/content_strategy` trong script.json, phụ thuộc brief/research tương ứng. Khi dùng cách này, các beat phụ thuộc strategy; strategy không phụ thuộc script tổng hợp, tránh chu trình. Nếu không đăng ký scope riêng, coi thay đổi strategy là thay đổi input nội dung và đánh dấu các beat chịu ảnh hưởng trước downstream.
+
+Chèn/xóa beat: giữ ID còn đúng chức năng, thêm ID mới, cập nhật selector, danh sách dependency và coverage; loại entry active đã bỏ chỉ sau khi xử lý các dependency còn trỏ tới nó, lưu bản cũ để tra cứu. Bản đề xuất để riêng thư mục không tự thay bản đang sản xuất. Khi nhận bản đề xuất, đồng bộ JSON/Markdown, shot, cue và manifest theo thay đổi thực, không tăng version hàng loạt rồi coi media đã được làm lại.

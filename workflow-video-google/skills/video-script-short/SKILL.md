@@ -4,7 +4,7 @@ description: "Viết hoặc sửa kịch bản TikTok/YouTube Shorts cho workflo
 ---
 
 # Video Script Short
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Viết kịch bản đầy đủ phục vụ sản xuất. Đọc [hợp đồng script](../video-workflow/references/contracts.md#scriptjson) khi xuất dữ liệu; dùng [mẫu short](references/writing.md) để chọn cấu trúc phù hợp, không ép mọi ý tưởng theo một công thức.
 
@@ -16,6 +16,14 @@ Viết kịch bản đầy đủ phục vụ sản xuất. Đọc [hợp đồng
 4. Viết các beat content đưa tới payoff, rồi ending/CTA nếu phù hợp. Câu nói phải là lời có thể đọc, chỉ dẫn hình ảnh phải là hành động nhìn thấy được. Không dùng đoạn tóm tắt thay cho bản lời đọc đầy đủ.
 5. Ước lượng thời gian theo cách kể và nhịp hành động; đánh dấu estimated. Với video có lời, chuyển bản đọc sang prepare-audio trước khi chốt timing. Không coi số từ là thời lượng đã đo.
 6. Xuất script.json, bản đọc script.md cùng version; mỗi beat có ID ổn định. Giữ ID của beat được sửa, dùng ID mới cho nội dung mới.
+
+## Thiết kế câu chuyện
+
+Đọc [thiết kế nội dung](../video-workflow/references/content-strategy.md) để ghi `content_strategy`: hoàn cảnh, lợi ích, một ý chính và kiểu kể. Với tiểu phẩm, xác định mong muốn → trở ngại/hiểu nhầm → phát hiện → lựa chọn/hành động mới. Với giải thích/hướng dẫn, tổ chức câu hỏi → thông tin/bước làm → câu trả lời/cách kiểm tra, không ép thêm nhân vật.
+
+Mỗi beat phải đóng góp vào tiến trình. Để nhân vật đại diện khán giả có quyền phát hiện hoặc quyết định; người giúp không chỉ đọc một đoạn quảng cáo. Payoff nên thể hiện bằng hành động hoặc câu trả lời cụ thể. Chọn vai trò sản phẩm và CTA theo nhu cầu người xem, giữ nguyên mục tiêu người dùng đã giao.
+
+Khi có nhiều người nói, khai báo `characters` và `speaker_id` theo [hợp đồng thoại](../video-workflow/references/contracts.md). Đọc lại lời theo từng vai, kiểm tra phản hồi có tự nhiên và giữ đúng tính cách; không chia đều thoại máy móc. Ghi `story_function` và `viewer_change` cho beat khi cần chuyển ý đồ sang shot.
 
 ## Kiểm tra và bàn giao
 

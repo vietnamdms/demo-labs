@@ -1,5 +1,5 @@
 # Workflow Video Google — hướng dẫn sử dụng và đóng góp
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Áp dụng [quy trình đóng góp của repo](../CONTRIBUTING.md). Tài liệu này là nơi chứa hướng dẫn sử dụng, yêu cầu môi trường và lệnh của lab.
 
@@ -85,3 +85,13 @@ Ngày: 2026-10-17 +07. Phạm vi: bản đóng gói cục bộ trước khi push
 ## Data ownership
 
 [contracts.md](skills/video-workflow/references/contracts.md) là nguồn chuẩn của dữ liệu; mỗi SKILL.md sở hữu hướng dẫn bước tương ứng. Tránh sao chép hợp đồng vào nhiều skill. Khi thay đổi schema, cập nhật helper, test và tài liệu liên quan cùng nhau.
+
+## Cập nhật hướng dẫn nội dung — 17/10/2026
+
+Phạm vi: tám SKILL.md, reference theo bước, tài liệu thiết kế nội dung dùng chung và hợp đồng mở rộng. Hai helper và bộ test giữ nguyên. Các kết quả 17/17 phía trên thuộc lần đóng gói ban đầu, không phải kết quả chạy lại cho bản nâng cấp này.
+
+Khi cài nâng cấp, đối chiếu và sao lưu bản đã tùy biến trước khi copy. Giữ tám thư mục cùng cấp. Các project đang chạy không bị tự chuyển script hay tái tạo media; áp dụng hướng dẫn khi viết/sửa phần nội dung liên quan. Các trường content_strategy, profile diễn xuất và mapping nhiều vai cần review bằng skill; helper hiện không chứng minh chúng hợp lệ về ngữ nghĩa.
+
+Nguồn bài học là bản EPUB Inbound Content người dùng cung cấp; bộ phân phối chỉ chứa hướng dẫn diễn giải và ví dụ sáng tạo, không chứa sách hoặc đường dẫn máy cá nhân. Ghi chú nguồn nằm tại [content-strategy.md](skills/video-workflow/references/content-strategy.md).
+
+Evidence cho lần cập nhật hướng dẫn: đã đọc diff và chạy `git diff --check` không có lỗi whitespace. Không chạy lại unit test hoặc render dịch vụ trong lần cập nhật này; không thay đổi mã helper. Bản cài cục bộ được sao lưu trước khi đồng bộ từ checkout.

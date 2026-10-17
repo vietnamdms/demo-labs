@@ -1,5 +1,5 @@
 # Thực thi Google Flow
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 ## Preflight theo lần chạy
 
@@ -32,3 +32,11 @@ Ngân sách gồm generation cost × outputs và số lượt sửa; upscale ho�
 Lỗi nhận diện/bố cục: xem lại frame và asset. Chuyển động quá gấp: xem duration/action. Frame tốt nhưng động tác sai: sửa prompt có mục tiêu. Sai câu thoại: kiểm tra script/audio và model; không gắn pass từ việc chỉ có âm thanh.
 
 Sửa tối thiểu có ích, giữ take cũ và lý do loại. Dừng khi đạt hoặc hết giới hạn; báo phần còn thiếu bằng dữ liệu thực.
+
+## Ý đồ kể chuyện trong prompt và take
+
+Ghi thứ tự hành động và phản ứng quan trọng từ shot: nhận ra chi tiết → dừng lại → quyết định, cùng ai nói và ai nghe. Chỉ yêu cầu phần diễn tiến nằm trong shot và vừa thời lượng. Không nhồi toàn bộ đường dây câu chuyện vào một lượt render.
+
+Review lấy từ clip thật: hành động mục tiêu có xảy ra, đúng vai có phát hiện/quyết định, câu nói có đúng và điểm trim có giữ được payoff? Trạng thái review chỉ pass sau khi quan sát phần liên quan. Không chọn một clip đẹp nhưng đổi ý nghĩa, đổi người nói hoặc thêm cam kết sản phẩm.
+
+Nếu cần sửa lời, quay lại script/audio; nếu cần sửa trạng thái đầu–cuối, quay lại shot/frame. Giữ take cũ và lý do loại để không lặp lại lỗi; chi phí sửa vẫn thuộc budget và retry đã chốt.

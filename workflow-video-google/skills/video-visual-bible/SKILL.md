@@ -4,7 +4,7 @@ description: "Chuẩn bị bộ tham chiếu nhân vật, sản phẩm, đạo c
 ---
 
 # Video Visual Bible
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Nhận brief, script, shotlist và ảnh đã có. Đọc [hợp đồng assets](../video-workflow/references/contracts.md#assetsjson), dùng [asset-spec.md](references/asset-spec.md) khi lập bộ nhận diện.
 
@@ -14,6 +14,14 @@ Nhận brief, script, shotlist và ảnh đã có. Đọc [hợp đồng assets]
 4. Nếu cần tạo hoặc chỉnh ảnh, dùng công cụ ảnh khả dụng và tuân theo skill/tool của công cụ đó. Flow image tools hoặc imagegen chỉ được coi là khả dụng khi thật sự có trong môi trường. Đừng viết script xử lý ảnh thay cho công cụ image editing khi công cụ quy định dùng imagegen.
 5. Dùng ảnh nhân vật/sản phẩm nền sạch khi thích hợp; ảnh phong cách/bối cảnh không chứa chủ thể dư gây nhầm. Giữ hướng dẫn văn bản tương thích với ảnh.
 6. Lưu assets.json và visual-bible.md: asset_id, image_paths, đặc điểm, scope, version và tình trạng kiểm tra. Ghi nguồn hoặc người cung cấp khi biết; không tự suy luận quyền sử dụng.
+
+## Nhất quán về vai diễn
+
+Với nhân vật có thoại hoặc hành động kể chuyện, ghi `performance_profile` bên cạnh nhận diện: vai trò, mong muốn, quan hệ, giọng nói, cách phản ứng và giới hạn diễn xuất cần giữ. Lấy ý đồ từ script; phân biệt đặc điểm được cung cấp/xác nhận với lựa chọn sáng tạo. Giữ nguyên `character_id` và liên kết asset qua `asset_id` khi có ảnh.
+
+Nhân vật có thể thay đổi cảm xúc hoặc quyết định qua câu chuyện; giữ tính nhất quán không có nghĩa giữ một biểu cảm suốt video. Người giúp nên có thái độ phù hợp brief; với hướng dẫn thân thiện, tránh biến lời giải thích thành chế nhạo người chưa biết.
+
+Đạo cụ phục vụ mở đầu/payoff cần nhận diện cố định và danh sách trạng thái hợp lệ. Shotlist sở hữu thời điểm đổi trạng thái. Ghi hướng dẫn phát âm/giọng làm đề xuất cho audio, không khẳng định model đã giữ được giọng từ một mô tả chữ.
 
 ## Hoàn thành
 

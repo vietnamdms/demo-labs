@@ -4,7 +4,7 @@ description: "Điều phối project sản xuất video bằng Google Flow từ 
 ---
 
 # Video Workflow
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 13:48 +07
 
 Điều phối bộ 8 skill cho video dựa trên storyboard. Trả lời và viết kịch bản theo ngôn ngữ người dùng; mặc định tiếng Việt nếu brief chưa chỉ định. Đọc [hợp đồng dữ liệu](references/contracts.md) trước khi tạo hoặc cập nhật project; chỉ đọc tài liệu của bước đang làm.
 
@@ -39,6 +39,14 @@ python3 scripts/project.py init /absolute/project-dir --id coffee-morning --form
 | Dựng cuối | video-assemble, final | File xuất đúng yêu cầu và đã được xem/nghe |
 
 Skill điều phối thực hiện các bước trong cùng phiên; không đồng nghĩa tạo chat hay subagent. Mốc kiểm tra chất lượng không tự sinh bước xin duyệt. Tôn trọng mốc duyệt người dùng đã đặt và quyền thao tác hiện có.
+
+## Nội dung xuyên suốt workflow
+
+Dùng [thiết kế nội dung](references/content-strategy.md) khi chuẩn hóa brief hoặc đổi hướng kể. Chốt hoàn cảnh khán giả, lợi ích, ý chính và cấu trúc phù hợp; lưu tại `script.content_strategy`. Giai đoạn hành trình chỉ áp dụng khi có mục tiêu marketing. Giữ nguồn, giả định và điều kiện của nhận định đi cùng script.
+
+Trước phân shot, rà lại lời hứa hook, payoff và tiến trình thay đổi của nhân vật/người xem. Trước Flow, xem animatic có truyền đạt đúng tiến trình đó. Trước bàn giao final, đối chiếu câu chuyện trong bản dựng với script: cắt ghép không được tạo bằng chứng hoặc kết quả mà nguồn chưa xác nhận. Ghi lỗi cụ thể tại `review.notes` của artifact liên quan và sửa từ bước sở hữu lỗi.
+
+Khi chuyển blog thành short hoặc long thành series, giữ một câu hỏi chính cho mỗi video và kết thúc đủ ý. Đề xuất các tập tiếp theo nếu hữu ích, không tự sản xuất cả series. Khi được yêu cầu đánh giá hiệu quả, bàn giao giả thuyết và cách đo; phân biệt review biên tập với kết quả khán giả thật.
 
 ## Trạng thái, sửa đổi, chi phí
 
