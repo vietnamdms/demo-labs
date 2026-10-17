@@ -1,5 +1,5 @@
 # Dựng theo ba chế độ
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 ## Chuẩn bị âm thanh
 
@@ -43,3 +43,16 @@ Với nhiều vai, giữ speaker_id qua script → cue → shot. Nghe lượt ch
 CTA nếu có phải đọc được ở bản xuất theo tỉ lệ đích, nói rõ lợi ích và chỉ tới tài nguyên thật. Mời đọc một bài cụ thể có thể rõ hơn chỉ nói “xem blog”; không giả định link bấm được hay link trong bio chưa xác minh.
 
 Khi bàn giao kế hoạch đo theo yêu cầu, phân biệt điều người biên tập đã quan sát với phản hồi người xem chưa có. Lấy khung đo tại [content-strategy.md](../../video-workflow/references/content-strategy.md); không tự triển khai phân phối.
+
+## Dựng nhanh mà giữ giọng
+
+Đọc [pacing-short.md](../../video-workflow/references/pacing-short.md) cho short và [voice-continuity.md](../../video-workflow/references/voice-continuity.md) cho vai cần giọng nhất quán. Mẫu chuẩn có version trong assets, cue trong audio-plan, take trong renders; kiểm tra mapping trước dựng. Nghe nối cùng vai sau mix, không chỉ nghe các cảnh riêng lẻ.
+
+1. Đo nguồn và đánh dấu câu, hành động, khoảng chờ có thể cắt. Thử rút head/tail và khoảng im không có chức năng từ take có sẵn trước. Không cắt ngang từ, phụ âm hoặc thao tác tạo payoff.
+2. Với câu dài, giữ audio liên tục và phủ reaction/insert đúng ý. J-cut cho tiếng cảnh sau đến trước hình; L-cut giữ tiếng cảnh trước trên hình sau. Ghi audio_segments/audio_bridges theo [contracts](../../video-workflow/references/contracts.md#giọng-và-nhịp-dựng), giữ cue/speaker và kiểm tra khẩu hình khi người nói hiện lại.
+3. Giữ speech playback_rate=1.0 mặc định. Không đổi pitch/formant để giả giọng giống mẫu; không tăng tốc toàn video chỉ để đạt mục tiêu. Nếu cần viết gọn câu, cập nhật script/cue và đánh dấu audio/clip liên quan cần sửa trước khi coi timeline đồng bộ.
+4. Cân gain/EQ vừa đủ để rõ lời, nhạc/SFX không che thoại hoặc tạo suy luận sai. Nghe lại để không làm biến dạng căn tính giọng. Chỉ đổi mix không tự buộc render lại ảnh/clip còn đúng input.
+5. Caption chia theo ý và audio thực, xem trên khung xuất nhỏ; giảm nhãn lặp nguyên lời. Safe zone, nhãn giả định, CTA và dấu nền tảng phải còn rõ; không crop/xóa dấu để có thêm chỗ chữ.
+6. Ghi version timeline, duration đo thực, nguồn audio/rate, voice_review theo vai và lỗi còn lại. Nếu chưa nghe, bản xuất là review-copy với review unchecked; file H.264/AAC hợp lệ không tự là final đạt.
+
+Editor/FFmpeg cho final phải được kiểm tra khả năng với công việc thực tế. Không gửi audio_segments, J/L-cut, playback_rate hoặc caption cho helper animatic rồi tuyên bố đã render các hiệu ứng đó. Với long, dùng thay đổi hình theo câu hỏi/chương và giữ khoảng giải thích cần thiết.

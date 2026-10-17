@@ -1,5 +1,5 @@
 # Workflow Video Google — hướng dẫn sử dụng và đóng góp
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:53 +07
 
 Áp dụng [quy trình đóng góp của repo](../CONTRIBUTING.md). Tài liệu này là nơi chứa hướng dẫn sử dụng, yêu cầu môi trường và lệnh của lab.
 
@@ -11,7 +11,7 @@ Updated: 2026-10-17 13:48 +07
 
 ## Installation
 
-Copy cả 8 thư mục con trong `skills/` vào thư mục skill của Codex: `$CODEX_HOME/skills` nếu đã cấu hình CODEX_HOME, hoặc `~/.codex/skills` mặc định. Giữ chúng cùng cấp để các liên kết dữ liệu dùng chung hoạt động. Đối chiếu trước nếu đã có skill cùng tên và đã tùy biến; không ghi đè các thay đổi đó một cách tự động.
+Copy 8 thư mục `video-*` trong `skills/` vào thư mục skill của Codex: `$CODEX_HOME/skills` nếu đã cấu hình CODEX_HOME, hoặc `~/.codex/skills` mặc định. Giữ chúng cùng cấp để các liên kết dữ liệu dùng chung hoạt động. Skill `youtube-publish` là thư mục thứ chín, có thể copy cùng bộ hoặc cài riêng vì reference của nó tự chứa. Đối chiếu trước nếu đã có skill cùng tên và đã tùy biến; không ghi đè các thay đổi đó một cách tự động.
 
 Đây là nội dung skill và helper, không có package dependency ứng dụng phải cài. Hướng dẫn cài đặt không tự khởi động tạo media có phí.
 
@@ -34,6 +34,15 @@ Tiếp tục project đã có. Chuẩn bị bộ tham chiếu, cặp start/end f
 ```
 
 Có thể gọi từng skill theo tên trong [danh sách](README.md#skills). `video-assemble` có ba mode: `prepare-audio`, `animatic`, `final`. Các mốc kiểm tra chất lượng không mặc định là yêu cầu duyệt thủ công; thực hiện trong phạm vi và ngân sách người dùng đã cho phép.
+
+Chuẩn bị gói đăng YouTube mà chưa upload:
+
+```text
+$youtube-publish
+Chuẩn bị tiêu đề, mô tả và gói đăng cho clip đã chọn trong project. Chỉ lưu kế hoạch cục bộ.
+```
+
+Khi đã sẵn sàng đăng, chỉ rõ clip/kênh/chế độ hoặc lịch trong yêu cầu. Skill dùng connector đủ khả năng nếu có, nếu không thì YouTube Studio qua công cụ trình duyệt được hỗ trợ. Skill không cung cấp tài khoản, OAuth hoặc uploader API riêng; thao tác phụ thuộc đăng nhập/quyền kênh và công cụ thật tại thời điểm chạy.
 
 ## Local helper commands
 
@@ -95,3 +104,21 @@ Khi cài nâng cấp, đối chiếu và sao lưu bản đã tùy biến trướ
 Nguồn bài học là bản EPUB Inbound Content người dùng cung cấp; bộ phân phối chỉ chứa hướng dẫn diễn giải và ví dụ sáng tạo, không chứa sách hoặc đường dẫn máy cá nhân. Ghi chú nguồn nằm tại [content-strategy.md](skills/video-workflow/references/content-strategy.md).
 
 Evidence cho lần cập nhật hướng dẫn: đã đọc diff và chạy `git diff --check` không có lỗi whitespace. Không chạy lại unit test hoặc render dịch vụ trong lần cập nhật này; không thay đổi mã helper. Bản cài cục bộ được sao lưu trước khi đồng bộ từ checkout.
+
+## Cập nhật giữ giọng và nhịp dựng — 17/10/2026
+
+Phạm vi: tám SKILL.md, hai reference chung voice-continuity/pacing-short, phần mở rộng contracts, Flow runbook, assembly và tình huống nghiệm thu. Kế hoạch tại [UPGRADE-PLAN-VOICE-PACING-2026.md](UPGRADE-PLAN-VOICE-PACING-2026.md). Hai helper và UI invocation policy giữ nguyên; các extension tương thích schema 1.0 được skill đối chiếu, helper chưa tự kiểm tra voice/pacing.
+
+Quy trình áp dụng: đối chiếu bản cài với nguồn trước sửa; sao lưu cả hai; kiểm tra frontmatter, liên kết/anchor, mẫu JSON và hồi quy helper; đồng bộ cả tám thư mục cùng cấp rồi so sánh nội dung. Tài nguyên project, media, credential và kết quả review cũ không được đưa vào bundle hoặc tự chuyển thành đạt theo hướng dẫn mới.
+
+Production kiểm tra riêng: chuẩn giọng cần mẫu thật đã nghe và review xuyên take; tổ hợp Voice/Frames phải xác minh trên model/mode tài khoản hiện tại. Việc kiểm tra bộ tài liệu hoặc unit test helper không chứng minh căn tính giọng, khẩu hình, nhịp cuối hoặc hiệu quả khán giả.
+
+Evidence lần cập nhật này: 8/8 skill qua quick_validate.py; probe 24 tài liệu, 93 liên kết/anchor nội bộ và 5 mẫu JSON đạt; 17/17 kiểm tra hồi quy helper đạt, không skip; git diff --check đạt. Mã helper không thay đổi. Đã sao lưu bản nguồn/bản cài trước sửa và đồng bộ tám skill, 31/31 file nguồn khớp bản cài theo SHA-256. Không chạy Flow, tạo giọng, dựng lại video hoặc phát sinh credit trong lần cập nhật skill.
+
+## Skill đăng YouTube — 17/10/2026
+
+Đã bổ sung youtube-publish độc lập gồm SKILL.md, UI metadata, Studio runbook và record/ca nghiệm thu. Hỗ trợ prepare/upload/schedule/update, channel identity, tránh upload trùng sau timeout, metadata/asset theo tính năng thật và xác minh trạng thái sau lưu. Hai helper sản xuất không thay đổi; bộ tám skill sản xuất không tự gọi bước đăng.
+
+Nguồn YouTube chính thức đối chiếu ngày 17/10/2026 nằm tại [Studio runbook](skills/youtube-publish/references/youtube-studio.md). Kiểm tra cấu trúc và nội dung tách với upload thật; lần tạo skill không đăng nhập, chọn kênh hoặc tải clip Tiny lên YouTube.
+
+Evidence tạo skill: 9/9 skill qua quick_validate.py; 27 tài liệu với 101 liên kết/anchor nội bộ và 6 mẫu JSON hợp lệ; UI metadata hợp lệ, dùng mặc định cho phép tự nhận diện skill; git diff --check đạt. Đã cài youtube-publish và đối chiếu SHA-256, 4/4 file khớp nguồn. Không thay mã helper, không chạy lại unit test helper trong lần thêm skill hướng dẫn này; chưa kiểm thử upload/schedule trên tài khoản thật.

@@ -1,5 +1,5 @@
 # Hợp đồng dữ liệu v1.0
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Đây là nguồn chuẩn dùng chung của bộ 8 skill. Đọc phần đang xử lý; không cần nạp mọi ví dụ. Lưu project riêng với thư mục skill. JSON UTF-8, schema_version="1.0", số thời gian tính bằng giây. Không dùng 0 để biểu thị giá trị chưa biết: dùng null.
 
@@ -161,6 +161,56 @@ Final segment: shot_id, take_id, video_path, trim_in_s (>=0), duration_s. Chọn
 Timeline phải đủ toàn bộ nội dung; trim không vượt độ dài clip đo được. Audio dài hơn timeline không được tự cắt mất câu. audio_path là một track guide cho helper animatic; final có thể dùng nhiều track qua editor.
 
 ## Kiểm tra và thay đổi
+
+### Giọng và nhịp dựng
+
+Phần mở rộng tương thích schema_version="1.0", áp dụng cho project mới hoặc phần đang sửa có yêu cầu giữ giọng/nhịp. Project cũ vẫn đọc được; thiếu các trường này không phải đã đạt yêu cầu mới. Helper hiện chưa kiểm tra ngữ nghĩa các trường mở rộng hoặc chất lượng giọng; skill phải đối chiếu mapping, nghe và kiểm tra version. Không coi `validate` pass là voice/pacing review pass.
+
+**Brief:** thêm `voice_consistency_required` (boolean). Khi chưa ghi, mặc định true cho nhân vật/giọng kể tái diễn; none/ambient không cần voice profile. Ràng buộc nhà cung cấp/model, start/end và dấu nền tảng lấy từ yêu cầu người dùng và brief; không suy ra quyền đổi route từ việc có voice reference ở model khác.
+
+**Hồ sơ giọng:** character asset trong assets.json sở hữu `voice_profile` có voice_id (ID ổn định), version (nguyên dương), language, accent, identity_description, locked_features[], allowed_performance_changes[], engine, model, platform_reference_id (nullable), reference_path (nullable), reference_span_s (null hoặc {start_s,end_s}), sample_text, pronunciation_dictionary[] ({term,spoken_form,notes}) và review theo enum chung. Có thể thêm source_url/source_notes để giữ provenance. Mỗi vai ánh xạ tới một profile; voice_id không được dùng cho căn tính khác chỉ vì trùng tên vai.
+
+Ví dụ hồ sơ đang đề xuất, chưa có mẫu/ID nền tảng; không phải bằng chứng đã tạo audio:
+
+```json
+{
+  "voice_id": "voice.gray",
+  "version": 1,
+  "language": "vi",
+  "accent": "Đề xuất tiếng Việt miền Nam, cần chốt bằng mẫu nghe",
+  "identity_description": "Giọng trẻ, sáng, phản ứng nhanh",
+  "locked_features": ["Căn tính, âm sắc, âm vực nền và giọng vùng sau khi có mẫu"],
+  "allowed_performance_changes": ["Bối rối", "Ngạc nhiên", "Nhẹ nhõm"],
+  "engine": "Google Flow",
+  "model": null,
+  "platform_reference_id": null,
+  "reference_path": null,
+  "reference_span_s": null,
+  "sample_text": "Ủa, ping ổn mà FPS tụt?",
+  "pronunciation_dictionary": [],
+  "review": {"status": "unchecked", "notes": "Chưa sinh/chọn và nghe mẫu chuẩn"}
+}
+```
+
+Để profile đạt: mẫu là file thật, đoạn hợp lệ trong duration đo được, một người nói rõ và đã nghe; review ghi kết quả đối chiếu. Text/reference ID chưa có audio không đủ. Mỗi lần thay căn tính, mẫu hoặc cấu hình reference ảnh hưởng giọng phải tăng version. Không coi thay đổi cảm xúc cue là giọng mới. Narrator cần profile có character asset âm thanh với image_paths=[] nếu không lên hình; không tạo image artifact giả.
+
+**Mapping và review:** script.characters[].asset_id trỏ asset chứa profile; beat/cue.speaker_id trỏ character_id. Audio cue thêm voice_id và voice_version; narration không có characters trong project cũ cần chuẩn hóa khi áp dụng rule mới. Audio-plan, take và edit-plan có thể lưu `voice_review[]`, mỗi entry là `{speaker_id,voice_id,voice_version,status,notes,checked_at}`. Status dùng unchecked/pass/needs-revision; checked_at nullable cho unchecked, còn pass cần thời điểm thật và notes nêu mẫu/đoạn đã nghe. Mọi vai phải giữ giọng trong một take đều cần entry; không dùng một review chung để che vai chưa nghe.
+
+**Capability và take:** capability thêm `supports_voice_reference`, `voice_reference_modes[]` và `supports_first_last_with_voice_reference`; boolean chưa biết để null, không suy ra từ hai khả năng độc lập. Snapshot luôn gắn checked_at, model, mode, nguồn/UI evidence hiện có. Take thêm `voice_inputs[]` với `{speaker_id,voice_id,voice_version,platform_reference_id,reference_path}`; ghi rõ input thực sự gửi, giá trị không gửi để null. Mô tả giọng trong prompt vẫn lưu ở prompt, không bịa reference đính kèm. Fingerprint bao gồm voice_inputs và version của mẫu/profile cùng các input trước đó.
+
+Take cần giữ giọng chỉ selected khi mọi voice_review cần thiết pass, overall review pass, mapping khớp và input_versions hiện hành. Không selected chỉ vì giọng giống nếu sai lời/hành động; không selected khi chưa nghe hoặc lệch giọng dù ASR đúng. Tổ hợp model/mode không đáp ứng các ràng buộc bắt buộc phải được xử lý trước batch thoại.
+
+**Pacing:** `script.content_strategy.pacing` sở hữu quyết định nhịp nội dung: mode (brisk/natural/reflective), target_duration_s, hook_goal_s (nullable), rationale; có thể thêm visual_update_range_s, reaction_duration_range_s, dialogue_shot_range_s, cta_duration_range_s (mỗi khoảng hai số dương tăng dần), caption_words_per_chunk (hai số nguyên dương tăng dần) và trend_basis[] ({source_url,observed_at,market,niche,application}). Đây là mục tiêu/gợi ý, không ép tất cả shot vào khoảng hoặc coi timing đã đo. Không tự nhập thông số ví dụ Tiny vào brief khác.
+
+**Shot và điểm nối:** shot có thể thêm `coverage_role` (main/reaction/insert), `cut_constraints[]` (hành động/chi tiết/câu phải giữ trước điểm cắt) và `audio_bridge` (null hoặc {type,cue_ids,notes}, type=j-cut/l-cut). Audio bridge là cách dựng âm thanh; không thay enum transition của hình hoặc speaker. Shotlist sở hữu ý đồ; edit-plan sở hữu thời gian thực.
+
+**Edit đa track:** final có thể thêm `audio_segments[]`: segment_id, cue_ids[], speaker_id, voice_id, voice_version, source_path, source_in_s, timeline_start_s, duration_s, playback_rate, gain_db. Mọi source/cue phải tồn tại, thời gian nằm trong file đo được, speed >0; mặc định playback_rate=1.0 cho speech. Các lượt nói không được chồng gây lẫn vai. Edit segment hình có thể thêm playback_rate (mặc định 1.0), cut_reason; với speed khác 1, thời gian nguồn dùng là duration_s × playback_rate và trim_in_s + thời gian nguồn không được vượt file. Ghi nguồn audio và rate riêng nếu hình đổi tốc độ nhưng tiếng giữ nguyên.
+
+Audio bridge trên timeline thật lưu `{type,cue_ids,cut_time_s,notes}` tại `audio_bridges[]`; cut_time_s trỏ điểm cắt hình thực, audio_segments cho biết tiếng đến trước/tiếp tục sau điểm đó. Timeline audio cue, phụ đề và hình phải được đối chiếu lại sau trim. Helper render_animatic.py không dựng đa track, speed, caption hoặc J/L-cut; các trường mở rộng cho editor final có khả năng tương ứng, không phải tính năng helper.
+
+**Dependency theo giọng:** đăng ký `voice.<character_id>` kind=document, path=assets.json và selector trỏ đúng voice_profile; sample thực có artifact kind=audio riêng. Profile phụ thuộc đúng sample/version, cue và clip sinh thoại phụ thuộc profile đã dùng. `take.input_versions` và voice_inputs phải khớp version profile đăng ký, không tự cập nhật khi chưa nghe/làm lại. Đồ thị phải không chu trình; sample lấy từ take cũ được lưu làm nguồn chuẩn trước, không tạo cạnh ngược tới take mới phụ thuộc nó.
+
+Khi đổi profile, đánh dấu cue/audio-plan/clip/bản dựng thật sự phụ thuộc; frame không tự bị sửa nếu nhận diện hình không đổi. Khi chỉ trim, mix gain hoặc đổi caption, không làm lại generation trừ khi input sinh thoại/hình thay đổi. Nếu dùng registry scoped, cập nhật selector khi đổi thứ tự character asset. Trường mở rộng không thay thế depends_on/input_versions của registry.
 
 Helper project.py validate đọc các tài liệu chuẩn hiện có, kiểm tra IDs, dependency/version, ready file/review, hook→payoff, liên kết shot/frame/take và media path. Chưa có document của bước sau không là lỗi project nháp; bản final cần đủ đầu ra theo brief, do skill điều phối đánh giá.
 

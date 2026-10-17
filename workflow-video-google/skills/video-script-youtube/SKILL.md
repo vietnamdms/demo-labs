@@ -4,7 +4,7 @@ description: "Viết hoặc sửa kịch bản YouTube dài cho workflow storybo
 ---
 
 # Video Script YouTube
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Đọc [hợp đồng script](../video-workflow/references/contracts.md#scriptjson) khi xuất dữ liệu. Dùng [hướng dẫn chương](references/writing.md) khi cấu trúc video dài.
 
@@ -27,6 +27,10 @@ Mỗi chương xác định `viewer_question`, `takeaway`, `evidence_plan` và `
 Với nhiều nhân vật, dùng `characters` và `speaker_id` theo [hợp đồng thoại](../video-workflow/references/contracts.md). Cho từng vai đóng góp phát hiện/thử nghiệm/quyết định theo câu chuyện; giữ giọng và quan hệ nhất quán. CTA giúp thực hiện bước tiếp theo; không tự thêm lời mời mua hoặc đăng ký vào mọi chương.
 
 ## Kiểm tra
+
+Với narrator hoặc nhân vật tái diễn, đọc [giữ giọng](../video-workflow/references/voice-continuity.md) và tái dùng cùng hồ sơ qua chương/tập. Lời và speaker_id phải nối được tới mẫu/phiên bản giọng trong assets/audio-plan; mô tả giọng bằng chữ không tự chứng minh đã khóa giọng.
+
+Nếu yêu cầu nhanh hơn, rút mở đầu, luận điểm lặp và khoảng chờ; dùng ví dụ, hình phủ và chuyển câu hỏi để giữ tiến triển. Có thể ghi `content_strategy.pacing.mode=brisk`, nhưng giữ thời gian hiểu, kiểm tra bằng chứng và phản ứng. Không nhập lịch cắt 1–2 giây hoặc mục tiêu thời lượng short vào video dài.
 
 - Phần mở đầu đáp ứng kỳ vọng concept title/thumbnail; không chỉ gây tò mò mà không giải đáp.
 - Các chương phát triển nội dung, không lặp luận điểm để kéo dài video.

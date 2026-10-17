@@ -1,7 +1,7 @@
 # Workflow Video Google
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:53 +07
 
-Bộ 8 skill Codex để sản xuất video bằng Google Flow: ý tưởng → kịch bản có hook → phân shot → bộ tham chiếu → start/end frame → animatic → clip → bản dựng cuối.
+Bộ 8 skill Codex để sản xuất video bằng Google Flow, kèm skill đăng YouTube độc lập: ý tưởng → kịch bản có hook → phân shot → bộ tham chiếu → start/end frame → animatic → clip → bản dựng cuối.
 
 Hỗ trợ hai nhánh kịch bản: TikTok/YouTube Shorts và YouTube dài. Mỗi shot giữ cặp ảnh đầu/cuối; lời dẫn và timing được chuẩn bị trước khi render.
 
@@ -13,8 +13,11 @@ Hỗ trợ hai nhánh kịch bản: TikTok/YouTube Shorts và YouTube dài. Mỗ
 | Chạy workflow đầy đủ hoặc tiếp tục project | [video-workflow](skills/video-workflow/SKILL.md) |
 | Thiết kế nội dung, câu chuyện và CTA | [content-strategy.md](skills/video-workflow/references/content-strategy.md) |
 | Hợp đồng dữ liệu và phiên bản | [contracts.md](skills/video-workflow/references/contracts.md) |
+| Giữ giọng nhân vật xuyên cảnh/tập | [voice-continuity.md](skills/video-workflow/references/voice-continuity.md) |
+| Nhịp short nhanh và nguồn xu hướng | [pacing-short.md](skills/video-workflow/references/pacing-short.md) |
 | Ví dụ short, long và sửa project | [examples.md](skills/video-workflow/references/examples.md) |
 | Tình huống nghiệm thu | [acceptance.md](skills/video-workflow/references/acceptance.md) |
+| Tải clip, đăng hoặc hẹn giờ YouTube | [youtube-publish](skills/youtube-publish/SKILL.md) |
 
 ## Skills
 
@@ -28,12 +31,21 @@ Hỗ trợ hai nhánh kịch bản: TikTok/YouTube Shorts và YouTube dài. Mỗ
 | [video-storyboard-frames](skills/video-storyboard-frames/SKILL.md) | Tạo và kiểm tra cặp frame từng shot |
 | [video-flow-generate](skills/video-flow-generate/SKILL.md) | Kiểm tra khả năng Flow, tạo take và chọn clip |
 | [video-assemble](skills/video-assemble/SKILL.md) | Chuẩn bị âm thanh, dựng animatic và bản cuối |
+| [youtube-publish](skills/youtube-publish/SKILL.md) | Skill độc lập để chuẩn bị, upload, đăng/hẹn giờ và xác minh video YouTube |
+
+`youtube-publish` hỗ trợ Shorts và video dài qua connector phù hợp hoặc YouTube Studio. Chỉ thực thi đăng khi được yêu cầu, dùng đúng file/kênh/visibility/lịch; không tự chạy sau bước dựng. Xem [record](skills/youtube-publish/references/publishing-record.md) và [Studio runbook](skills/youtube-publish/references/youtube-studio.md).
 
 ## Nâng cấp nội dung theo Inbound Content
 
 Cả tám skill đã bổ sung tiêu chí nội dung từ brief đến bản dựng: hoàn cảnh khán giả, một ý chính, nhân vật và thay đổi, hook/payoff, thoại nhiều vai, CTA phù hợp và đo lường theo mục tiêu. Nhánh short tập trung một tình huống; nhánh YouTube dài phát triển câu hỏi qua từng chương. Hướng dẫn đầy đủ nằm tại [thiết kế nội dung](skills/video-workflow/references/content-strategy.md).
 
 Các trường biên tập là phần mở rộng tương thích dữ liệu v1.0; helper hiện giữ nguyên và chưa tự kiểm tra các trường mới. Project cũ có thể tiếp tục, bổ sung thông tin khi sửa nội dung. Đây là nâng cấp hướng dẫn, chưa có kết quả đo hiệu quả video với người xem.
+
+## Giữ giọng và nhịp dựng
+
+Cả tám skill đã bổ sung hồ sơ giọng có mẫu/version, mapping speaker và nghe đối chiếu trước khi chọn take. Nhịp short nhanh hơn qua lời gọn, trim, reaction/insert và nối âm thanh; giữ giọng tự nhiên. Các mốc thời gian là gợi ý thử theo brief, không phải quy tắc thuật toán. Nhánh YouTube dài giữ nhịp theo chương.
+
+Voice reference phụ thuộc model/mode Flow; kiểm tra tổ hợp với start/end trước batch thoại. Các extension tương thích dữ liệu v1.0 được skill rà soát, helper chưa tự đánh giá chất lượng giọng hoặc nhịp. Xem [nguồn hướng dẫn giọng](skills/video-workflow/references/voice-continuity.md), [nhịp short](skills/video-workflow/references/pacing-short.md) và [kế hoạch triển khai](UPGRADE-PLAN-VOICE-PACING-2026.md).
 
 ## Status
 
@@ -53,7 +65,8 @@ workflow-video-google/
 │   ├── video-visual-bible/
 │   ├── video-storyboard-frames/
 │   ├── video-flow-generate/
-│   └── video-assemble/
+│   ├── video-assemble/
+│   └── youtube-publish/
 └── tests/
     └── test_video_skills.py
 ```

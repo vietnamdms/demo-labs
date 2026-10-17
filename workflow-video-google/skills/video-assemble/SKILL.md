@@ -4,7 +4,7 @@ description: "Chuẩn bị lời dẫn và timing, dựng animatic từ cặp fr
 ---
 
 # Video Assemble
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Chọn đúng mode `prepare-audio`, `animatic`, `final` theo yêu cầu và đầu ra hiện có. Đọc [hợp đồng audio/edit](../video-workflow/references/contracts.md#audio-planjson), rồi [assembly.md](references/assembly.md) cho mode đang làm.
 
@@ -13,6 +13,8 @@ Chọn đúng mode `prepare-audio`, `animatic`, `final` theo yêu cầu và đ�
 Nhận lời dẫn/thoại từ script. Nhận file thu hoặc dùng công cụ giọng nói khả dụng trong phạm vi được phép; không giả lập đã có audio khi chỉ có text. Đo thời lượng file bằng công cụ media, nghe cách phát âm tiếng Việt/tên riêng, ghi cues và chỗ nghỉ. Phân biệt narration, sync-dialogue, ambient, none. Đồng bộ khẩu hình không thể giải quyết chỉ bằng ghép voiceover lên miệng đang nói khác.
 
 Xuất audio-plan.json với path, duration_s đo được, cue timings, script version và stage scratch/final. Nếu video không lời, ghi mode none/ambient và mốc nhịp hành động. Nếu thay script, timing cũ cần rà soát. Chuyển timing cho video-shotlist.
+
+Với vai cần giữ giọng, dùng [voice-continuity.md](../video-workflow/references/voice-continuity.md): tái dùng mẫu/profile chuẩn, nối speaker_id với voice_id/version và nghe đối chiếu từng vai. Không tự chọn giọng mới giữa cảnh; ghi voice_review=unchecked nếu chưa nghe được. Stage final không thay thế review giọng.
 
 ## animatic
 
@@ -37,6 +39,10 @@ Kiểm tra khả năng công cụ trước khi hứa hiệu ứng/mix/subtitles.
 Xuất edit-plan.json mode final và file video thực. Kiểm tra metadata, phát/xem toàn bộ, nghe âm thanh, soát chữ tiếng Việt, nhịp nối và hook/payoff. Nếu thiếu khả năng xem/nghe, ghi phần chưa kiểm tra; không tuyên bố đã đạt kiểm tra cảm quan từ ffprobe.
 
 ## Biên tập nội dung và bàn giao học hỏi
+
+Với short cần nhanh hơn, áp dụng [pacing-short.md](../video-workflow/references/pacing-short.md) và [assembly.md](references/assembly.md): rút thời gian chờ, nối thoại qua cảnh, thêm insert/phản ứng có ích, caption ngắn theo ý. Thử trim take hiện có trước khi lập danh sách render lại. Giữ speech playback_rate=1.0 mặc định, không đổi pitch/căn tính giọng để ép thời lượng; nhịp video dài theo chương.
+
+Nghe nối cảnh cùng vai với mẫu chuẩn sau mix, kiểm tra phát âm, đổi vai và khẩu hình. Lỗi giọng phải sửa đúng nguồn; gain/EQ chỉ cân mix. Lưu các đoạn trim/audio bridge và voice_review trong edit/audio plan; bản xem duyệt còn lỗi không được nâng thành final đạt. Helper animatic không thực hiện J/L-cut, mix đa track hoặc caption; dùng editor có khả năng thật.
 
 Đối chiếu `script.content_strategy`, hook/payoff và vai trò shot khi dựng. Giữ khoảng ngừng để người xem nhận ra phát hiện, phản ứng hoặc kết quả. Có thể rút lời lặp hoặc cảnh thừa, nhưng thay đổi lời/ý phải cập nhật script và các cue liên quan trước khi coi bản dựng đồng bộ.
 

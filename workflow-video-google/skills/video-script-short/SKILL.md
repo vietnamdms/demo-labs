@@ -4,7 +4,7 @@ description: "Viết hoặc sửa kịch bản TikTok/YouTube Shorts cho workflo
 ---
 
 # Video Script Short
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Viết kịch bản đầy đủ phục vụ sản xuất. Đọc [hợp đồng script](../video-workflow/references/contracts.md#scriptjson) khi xuất dữ liệu; dùng [mẫu short](references/writing.md) để chọn cấu trúc phù hợp, không ép mọi ý tưởng theo một công thức.
 
@@ -26,6 +26,10 @@ Mỗi beat phải đóng góp vào tiến trình. Để nhân vật đại diệ
 Khi có nhiều người nói, khai báo `characters` và `speaker_id` theo [hợp đồng thoại](../video-workflow/references/contracts.md). Đọc lại lời theo từng vai, kiểm tra phản hồi có tự nhiên và giữ đúng tính cách; không chia đều thoại máy móc. Ghi `story_function` và `viewer_change` cho beat khi cần chuyển ý đồ sang shot.
 
 ## Kiểm tra và bàn giao
+
+Khi cần tăng nhịp, dùng [pacing-short.md](../video-workflow/references/pacing-short.md): vào hành động ở hình đầu, rút câu lặp và thời gian chờ; lưu `content_strategy.pacing`. Các mốc hook/shot/CTA là điểm thử theo brief, không phải chuẩn thuật toán. Viết đủ nội dung và phát âm được ở tốc độ tự nhiên trước khi chốt thời lượng.
+
+Đọc [giữ giọng](../video-workflow/references/voice-continuity.md) khi có vai tái diễn hoặc brief yêu cầu. Dùng lại character_id và hướng dẫn diễn xuất từ hồ sơ chuẩn, không đổi âm sắc/giọng vùng để làm câu nhanh hoặc hài hơn. Cảm xúc thay theo beat. Script chỉ sở hữu lời và vai; mẫu/phiên bản giọng thuộc assets, timing thuộc audio-plan.
 
 - Hook có tạo đúng kỳ vọng; payoff có thực sự trả lời? Tránh hứa điều kịch bản không thể chứng minh.
 - Hình ảnh có thể hiểu được và có vai trò trong câu chuyện? Nếu cần xem không bật âm thanh, mô tả chữ thiết yếu để hậu kỳ thêm.

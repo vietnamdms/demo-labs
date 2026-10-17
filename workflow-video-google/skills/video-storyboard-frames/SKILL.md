@@ -4,7 +4,7 @@ description: "Tạo và sửa cặp start frame/end frame cho từng shot trong 
 ---
 
 # Video Storyboard Frames
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Đọc [hợp đồng frames](../video-workflow/references/contracts.md#framesjson) và [frame-direction.md](references/frame-direction.md). Đầu vào là shotlist, assets và các ảnh hiện có; không tự dựng một câu chuyện mới từ prompt ảnh rời.
 
@@ -27,6 +27,10 @@ Với chi tiết được nhắc lại ở payoff, kiểm tra trạng thái xuy�
 Ghi review về ý nghĩa bên cạnh nhận diện/kỹ thuật. Nếu hình đẹp nhưng không thể hiện đúng hành động, sửa đúng frame; nếu mục tiêu shot mâu thuẫn, trả về shotlist/script thay vì tự viết lại câu chuyện qua prompt.
 
 ## Tiêu chí
+
+Với short nhịp nhanh, đối chiếu [pacing-short.md](../video-workflow/references/pacing-short.md) và coverage/cut_constraints của shotlist. Chuẩn bị cặp frame cho insert/phản ứng thật sự cần, giữ hướng nhìn và trạng thái đạo cụ tại điểm cắt. Không tự sinh thêm shot chỉ để đạt tần suất đổi hình; nếu reframe từ nguồn có sẵn, kiểm tra độ phân giải, chi tiết cần thấy và dấu nền tảng.
+
+Ảnh nhân vật không mang theo căn tính giọng. Giữ character/reference ID để downstream nối đúng [hồ sơ giọng](../video-workflow/references/voice-continuity.md); bước frame không được tự đánh giá voice_review hoặc đổi người nói. Khi brief chỉ dùng model Google trong Flow, dùng đúng route đó cho ảnh và nhân vật.
 
 - Mọi shot có start và end thật, xem được, đúng tỉ lệ đích. Nếu cần crop/reframe, thực hiện có chủ ý qua công cụ phù hợp, không âm thầm cắt chủ thể.
 - Không bảo đảm nhận diện/chuyển động của clip chỉ từ ảnh. Ghi rõ đây là storyboard mục tiêu, phải kiểm tra lại sau render.

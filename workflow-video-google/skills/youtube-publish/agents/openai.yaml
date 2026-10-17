@@ -1,0 +1,4 @@
+interface:
+  display_name: "Đăng clip lên YouTube"
+  short_description: "Đăng video, Shorts và hẹn giờ trên YouTube"
+  default_prompt: "Dùng $youtube-publish để tải clip đã chọn lên đúng kênh YouTube và xác minh chế độ hiển thị hoặc lịch đăng."

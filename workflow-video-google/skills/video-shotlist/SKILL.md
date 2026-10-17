@@ -4,7 +4,7 @@ description: "Phân kịch bản video thành scene và shot có ID, thời lư�
 ---
 
 # Video Shotlist
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Nhận script và brief; đọc [hợp đồng shotlist](../video-workflow/references/contracts.md#shotlistjson). Dùng [continuity.md](references/continuity.md) khi có nối hành động/đổi góc.
 
@@ -27,6 +27,10 @@ Mô tả phản ứng sau thông tin quan trọng và thời gian cho payoff. Kh
 Đối chiếu `speaker_id`, lời thoại và cue với script/audio-plan. Giữ nguyên người nói khi đổi góc; shot phản ứng có thể để người nói ngoài khung, phải ghi rõ. Nếu một shot chứa nhiều lượt thoại, dùng danh sách cue theo thứ tự thay vì gán toàn bộ lời cho một vai. Không gộp phản ứng hoặc cắt phần giải thích làm thay đổi ý nghĩa.
 
 ## Đầu ra và kiểm tra
+
+Đọc [pacing short](../video-workflow/references/pacing-short.md) khi brief cần nhịp nhanh. Ghi `cut_constraints` cho hành động/câu phải giữ, `coverage_role` cho main/reaction/insert và `audio_bridge` khi lời đi qua điểm cắt theo [contracts](../video-workflow/references/contracts.md#giọng-và-nhịp-dựng). Thử dựng từ take đã có trước khi đề xuất job mới; thời gian sinh clip không quyết định thời gian dùng cuối.
+
+Khi đổi góc hoặc cho lời chạy qua cảnh phản ứng, giữ speaker/cue và mapping giọng theo [voice-continuity.md](../video-workflow/references/voice-continuity.md). Ghi vai ngoài khung, không đặt lời lên miệng vai khác. Chừa thời gian thật để giữ payoff; chỉ thay góc/cắt nhanh nếu trạng thái đạo cụ và tiến trình còn đúng.
 
 Xuất shotlist.json và bảng shotlist.md cùng version. Bảng gồm shot/scene, beat, thời gian, camera, start/end, motion, âm thanh và kiểu nối. Kiểm tra tổng thời lượng so với brief, ghi lý do nếu cần thay đổi.
 

@@ -4,7 +4,7 @@ description: "Tạo hoặc tiếp tục clip trên Google Flow từ cặp start/
 ---
 
 # Video Flow Generate
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Đọc [hợp đồng renders](../video-workflow/references/contracts.md#rendersjson) và [quy trình Flow](references/flow-runbook.md) trước khi thực thi. Nhận shotlist, cặp frame, animatic/timing và phạm vi chi phí đã cho phép.
 
@@ -16,6 +16,10 @@ Updated: 2026-10-17 13:48 +07
 - Không mặc định Frames, Ingredients và voice references dùng đồng thời được. Nếu tổ hợp không hỗ trợ, giữ yêu cầu cặp ảnh, nêu xung đột và phương án phù hợp; không tự chuyển sang một tool trả phí khác.
 
 ## Chạy từng take
+
+Nếu có yêu cầu giữ giọng, đọc [voice-continuity.md](../video-workflow/references/voice-continuity.md). Đối chiếu cue/speaker/profile/reference trước submit; kiểm tra hỗ trợ voice reference trong đúng tổ hợp model+mode+first/last. Chưa có bằng chứng qua nhiều take thì làm pilot trong ngân sách trước batch; không bỏ end frame hoặc chuyển nhà cung cấp để né xung đột brief.
+
+Ghi `voice_inputs` cùng version và reference thực sự gửi, đưa chúng vào fingerprint/input_versions theo [contracts](../video-workflow/references/contracts.md#giọng-và-nhịp-dựng). Prompt giữ lời chuẩn, người nói, căn tính giọng và cảm xúc của cue. Không yêu cầu nhân vật nói nhanh hơn để bù thời gian chờ; shotlist/assemble sở hữu nhịp và điểm cắt.
 
 1. Kiểm tra render job/take cũ của shot; chưa rõ kết quả thì để unknown và đối chiếu trước khi tạo lại.
 2. Viết prompt mô tả chuyển động nối hai trạng thái, camera, nhịp và âm thanh. Không mâu thuẫn ảnh hoặc nhồi thêm hành động ngoài shot.
@@ -34,5 +38,7 @@ Khi xem take, xác nhận đúng người nói, câu thoại, phản ứng và t
 Lỗi ý nghĩa bắt đầu từ script/shot thì sửa ở nguồn và cập nhật dependency trước render lại. Lỗi thực hiện của model thì sửa prompt/timing trong ngân sách đã có. Giữ mọi giới hạn về retry, trạng thái unknown và credit ở quy trình trên.
 
 ## Bàn giao
+
+Khi review, nghe toàn thoại và nghe nối các take cùng vai với mẫu chuẩn. Ghi `voice_review` riêng cho mỗi vai trong take; đúng lời qua ASR chưa đủ. Lệch giọng/đổi vai là needs-revision; chưa nghe là unchecked. Selected cần voice_review pass cho mọi vai phải giữ giọng, cùng overall review pass và dependency hợp lệ. Giữ ngân sách/retry hiện có, không sinh lại vô hạn vì mô tả chữ chưa giữ được giọng.
 
 Renders.json phải nêu take được chọn, file/link thật, nguồn frame/version, chi phí quan sát được và lỗi còn lại. File tồn tại không đủ để ready. Chỉ render một phần nếu đó là phạm vi được giao; không tự render cả project từ yêu cầu sửa một shot. Chuyển clip đạt yêu cầu sang video-assemble final.

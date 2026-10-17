@@ -4,7 +4,7 @@ description: "Điều phối project sản xuất video bằng Google Flow từ 
 ---
 
 # Video Workflow
-Updated: 2026-10-17 13:48 +07
+Updated: 2026-10-17 14:49 +07
 
 Điều phối bộ 8 skill cho video dựa trên storyboard. Trả lời và viết kịch bản theo ngôn ngữ người dùng; mặc định tiếng Việt nếu brief chưa chỉ định. Đọc [hợp đồng dữ liệu](references/contracts.md) trước khi tạo hoặc cập nhật project; chỉ đọc tài liệu của bước đang làm.
 
@@ -30,6 +30,7 @@ python3 scripts/project.py init /absolute/project-dir --id coffee-morning --form
 | Kịch bản short | [video-script-short](../video-script-short/SKILL.md) | Hook, lời hứa, nội dung và payoff liên kết được |
 | Kịch bản dài | [video-script-youtube](../video-script-youtube/SKILL.md) | Concept tiêu đề/thumbnail, chương và bản lời đọc đầy đủ |
 | Phân shot nháp | [video-shotlist](../video-shotlist/SKILL.md) | Mỗi shot có trạng thái đầu/cuối và hành động |
+| Chuẩn giọng khi có thoại | [video-visual-bible](../video-visual-bible/SKILL.md) | Chọn/tái dùng profile và mẫu từ script/asset sẵn có trước prepare-audio |
 | Lời dẫn thử | [video-assemble](../video-assemble/SKILL.md), prepare-audio | Timing được đo nếu có lời; phân biệt nháp/final |
 | Chốt timing | video-shotlist | Cập nhật theo lời dẫn hoặc nhịp hành động |
 | Tham chiếu | [video-visual-bible](../video-visual-bible/SKILL.md) | Nhận diện và biến thể có chủ ý được định nghĩa |
@@ -49,6 +50,10 @@ Trước phân shot, rà lại lời hứa hook, payoff và tiến trình thay �
 Khi chuyển blog thành short hoặc long thành series, giữ một câu hỏi chính cho mỗi video và kết thúc đủ ý. Đề xuất các tập tiếp theo nếu hữu ích, không tự sản xuất cả series. Khi được yêu cầu đánh giá hiệu quả, bàn giao giả thuyết và cách đo; phân biệt review biên tập với kết quả khán giả thật.
 
 ## Trạng thái, sửa đổi, chi phí
+
+Với nhân vật có thoại, áp dụng [giữ giọng](references/voice-continuity.md): mỗi vai dùng hồ sơ có version và mẫu đã nghe, xuyên cảnh/tập. Ghi yêu cầu tại brief; `voice_consistency_required` mặc định true cho vai/giọng kể tái diễn, không áp dụng cho none/ambient. Trước batch thoại, đối chiếu khả năng kết hợp frame/voice và bằng chứng pilot; nếu tổ hợp bắt buộc chưa hỗ trợ, tiếp tục phần độc lập và bàn giao xung đột cụ thể.
+
+Với short cần nhịp nhanh, đọc [pacing-short.md](references/pacing-short.md), chọn pacing ở script.content_strategy và kiểm tra lại bằng timing đo thực. Nhịp tăng qua lời gọn, hành động và dựng; không tự tăng tốc giọng. Ràng buộc model/nhà cung cấp, start/end và dấu nền tảng lấy từ brief; yêu cầu chỉ dùng Google Flow không được thay bằng tool sinh ảnh/giọng khác. Không áp thông số short cho YouTube dài.
 
 - Ghi project.json sau mỗi đầu ra quan trọng. Dùng ID ổn định; đánh dấu version nguồn của từng artifact. Xem [contracts.md](references/contracts.md) về nguồn chuẩn.
 - Khi sửa một shot/frame/lời dẫn, chỉ đánh dấu các artifact thật sự phụ thuộc. Dùng dependency theo shot/beat, tránh gắn mọi clip vào toàn bộ tài liệu nếu không cần.
