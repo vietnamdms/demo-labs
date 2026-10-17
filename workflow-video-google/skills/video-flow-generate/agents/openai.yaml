@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Flow Generate"
+  short_description: "Tạo clip từ cặp frame trên Google Flow"
+  default_prompt: "Dùng $video-flow-generate để thực hiện bước tương ứng trong project video của tôi."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Script · YouTube"
+  short_description: "Viết kịch bản YouTube dài theo chương và hook"
+  default_prompt: "Dùng $video-script-youtube để thực hiện bước tương ứng trong project video của tôi."

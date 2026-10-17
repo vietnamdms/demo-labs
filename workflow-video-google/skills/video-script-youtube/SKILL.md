@@ -1,0 +1,29 @@
+---
+name: video-script-youtube
+description: "Viết hoặc sửa kịch bản YouTube dài cho workflow storyboard/Google Flow: concept tiêu đề và thumbnail, hook, chương, lời dẫn đầy đủ và payoff. Dùng cho video YouTube nhiều phần cần phân cảnh; video Shorts dùng video-script-short."
+---
+
+# Video Script YouTube
+Updated: 2026-10-17 11:03 +07
+
+Đọc [hợp đồng script](../video-workflow/references/contracts.md#scriptjson) khi xuất dữ liệu. Dùng [hướng dẫn chương](references/writing.md) khi cấu trúc video dài.
+
+## Thực hiện
+
+1. Từ brief, xác định câu hỏi trung tâm, người xem, mục tiêu, thời lượng và thông tin cần kiểm chứng.
+2. Viết concept tiêu đề, thumbnail và lời hứa nội dung trước bản đầy đủ. Đây là concept phục vụ kịch bản; không tự tạo thumbnail, SEO package hoặc đăng bài.
+3. Viết hook bằng tình huống, kết quả mẫu, câu hỏi hoặc mâu thuẫn phù hợp. Gắn vào payoff cụ thể. Hook không cần cùng độ dài ở mọi video; tránh mở đầu kéo dài không phục vụ câu chuyện.
+4. Lập chương theo tiến trình hiểu hoặc diễn biến. Mỗi chương có purpose và câu hỏi được giải đáp; chapter_id ổn định. Không thêm chương chỉ để đạt số lượng cố định.
+5. Viết đầy đủ spoken/visual cho từng beat: hook, content, payoff và ending. Ví dụ, dẫn chứng và chuyển ý phải được viết thật. Chia công việc thành từng chương nếu dài nhưng hoàn thành toàn bộ phạm vi đã yêu cầu.
+6. Ghi thời lượng estimated; tách lời dẫn liên tục khỏi hình minh họa. Một câu có thể phủ qua nhiều shot. Sau bản đọc thử, sửa nhịp chứ không tăng tốc giọng để ép khớp máy móc.
+7. Xuất script.json và script.md cùng version, có concept title/thumbnail, chapter map, hook liên kết payoff, nguồn cho tuyên bố thực tế.
+
+## Kiểm tra
+
+- Phần mở đầu đáp ứng kỳ vọng concept title/thumbnail; không chỉ gây tò mò mà không giải đáp.
+- Các chương phát triển nội dung, không lặp luận điểm để kéo dài video.
+- Hook phụ hoặc chuyển nhịp xuất hiện khi có lý do nội dung; không ép lịch gây tò mò/cắt cảnh theo phút.
+- Script có lời đọc đầy đủ và hình ảnh khả thi, đủ dữ liệu để video-shotlist làm việc.
+- Chưa có dữ liệu khán giả thì chỉ đề xuất phương án, không hứa CTR/retention cụ thể.
+
+Rà soát nội dung trước khi chuyển sang [video-shotlist](../video-shotlist/SKILL.md). Chỉ nghiên cứu thêm khi cần chứng cứ; không mở rộng thành chiến dịch phân phối ngoài yêu cầu.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Assemble"
+  short_description: "Chuẩn bị âm thanh, dựng animatic và video cuối"
+  default_prompt: "Dùng $video-assemble để thực hiện bước tương ứng trong project video của tôi."

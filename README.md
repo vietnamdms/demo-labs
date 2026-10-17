@@ -1,5 +1,5 @@
 # demo-labs
-Updated: 2026-10-17 10:19 +07
+Updated: 2026-10-17 11:03 +07
 
 Không gian dành cho các bản demo và bài thử nghiệm của vietnamdms.
 
@@ -11,10 +11,11 @@ Không gian dành cho các bản demo và bài thử nghiệm của vietnamdms.
 | Quy trình và reference cho contributor | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Governance và cách tra wiki | [Governance and wiki](CONTRIBUTING.md#governance-and-wiki) |
 | Kết quả kiểm tra bộ tài liệu | [Initialization evidence](CONTRIBUTING.md#initialization-evidence) |
+| Bộ skill sản xuất video Google Flow | [workflow-video-google](workflow-video-google/README.md) |
 
 ## Status
 
-Repo đang ở bước khởi tạo tài liệu; chưa có ứng dụng hoặc lab được triển khai.
+Đã có lab [workflow-video-google](workflow-video-google/README.md) gồm 8 skill, helper quản lý project/dựng animatic và bộ kiểm tra cục bộ. Hướng dẫn môi trường, cài đặt và lệnh nằm tại [contributor guide của lab](workflow-video-google/CONTRIBUTING.md).
 
 ## System requirements
 

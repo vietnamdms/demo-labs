@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Storyboard Frames"
+  short_description: "Tạo cặp ảnh đầu cuối cho từng shot của video"
+  default_prompt: "Dùng $video-storyboard-frames để thực hiện bước tương ứng trong project video của tôi."

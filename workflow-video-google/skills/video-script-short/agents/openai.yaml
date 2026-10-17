@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Script · Short"
+  short_description: "Viết kịch bản TikTok và Shorts có hook, payoff"
+  default_prompt: "Dùng $video-script-short để thực hiện bước tương ứng trong project video của tôi."

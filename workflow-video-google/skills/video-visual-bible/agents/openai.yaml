@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Visual Bible"
+  short_description: "Giữ nhân vật, sản phẩm và bối cảnh nhất quán"
+  default_prompt: "Dùng $video-visual-bible để thực hiện bước tương ứng trong project video của tôi."

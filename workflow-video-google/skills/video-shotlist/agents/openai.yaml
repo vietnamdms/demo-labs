@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Shotlist"
+  short_description: "Phân kịch bản thành shot với trạng thái đầu cuối"
+  default_prompt: "Dùng $video-shotlist để thực hiện bước tương ứng trong project video của tôi."

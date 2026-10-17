@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Workflow"
+  short_description: "Điều phối video từ ý tưởng đến bản dựng cuối"
+  default_prompt: "Dùng $video-workflow để thực hiện bước tương ứng trong project video của tôi."

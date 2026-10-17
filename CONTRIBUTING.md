@@ -1,5 +1,5 @@
 # Contributor guide
-Updated: 2026-10-17 10:19 +07
+Updated: 2026-10-17 11:03 +07
 
 Hướng dẫn thực hiện và xác minh thay đổi trong checkout.
 
@@ -23,11 +23,11 @@ Các mục dưới đây là nhà của yêu cầu môi trường và lệnh v�
 
 ### System requirements
 
-Công cụ dùng cho bộ tài liệu: Git, shell POSIX, grep, wc và readlink; Python 3 hỗ trợ probe bổ sung. Runtime ứng dụng và phiên bản tối thiểu chưa được quyết định.
+Công cụ dùng cho bộ tài liệu: Git, shell POSIX, grep, wc và readlink; Python 3 hỗ trợ probe bổ sung. Yêu cầu Python và FFmpeg cho lab video nằm tại [Workflow Video Google requirements](workflow-video-google/CONTRIBUTING.md#requirements).
 
 ### Installation
 
-Chưa có package manifest hoặc quy trình cài dependency ứng dụng.
+Repo chưa có package manifest chung. Cách cài bộ skill video nằm tại [Workflow Video Google installation](workflow-video-google/CONTRIBUTING.md#installation).
 
 ### Database initialization and migrations
 
@@ -73,7 +73,7 @@ Chưa chọn stack, kiến trúc ứng dụng hoặc nơi lưu ADR. Khi có quy�
 
 Kiểm tra diff bằng git diff --check và xác nhận chỉ có artifact dự kiến. Chạy từng probe trong brief và kiểm tra thêm target của symlink ở mọi subtree, thứ tự Updated, rule trên một dòng, liên kết nội bộ, code fence và số import trước/sau.
 
-Các probe cấu trúc không thay thế test ứng dụng. Hiện chưa có suite test hoặc production build để chạy; khi bổ sung phần mềm, đặt lệnh thực tế tại mục này.
+Các probe cấu trúc không thay thế test phần mềm. Bộ kiểm tra helper video và lệnh chạy nằm tại [Workflow Video Google verification](workflow-video-google/CONTRIBUTING.md#verification). Repo chưa có production build chung.
 
 ## Handoff and evidence
 
