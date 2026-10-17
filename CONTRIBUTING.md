@@ -1,5 +1,5 @@
 # Contributor guide
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 11:21 +07
 
 Hướng dẫn thực hiện và xác minh thay đổi trong checkout.
 
@@ -67,7 +67,7 @@ kstack --json workspace context --path "$PWD"
 
 ## Technology and architecture decisions
 
-Chưa chọn stack, kiến trúc ứng dụng hoặc nơi lưu ADR. Khi có quyết định, ghi bối cảnh, phương án được chọn, trade-off và evidence tại nguồn được repo quy định; chỉ để liên kết định tuyến trong README.md.
+Quyết định kỹ thuật của lab video nằm tại [Workflow Video Google](workflow-video-google/CONTRIBUTING.md). Repo chưa chọn stack ứng dụng chung hoặc nơi lưu ADR. Khi có quyết định, ghi bối cảnh, phương án được chọn, trade-off và evidence tại nguồn được repo quy định; chỉ để liên kết định tuyến trong README.md.
 
 ## Verification
 
@@ -81,20 +81,24 @@ Handoff phải tham chiếu evidence có thể kiểm chứng. Tách việc đã
 
 ## Initialization evidence
 
-Ngày kiểm tra: 2026-10-17 +07.
+Ngày kiểm tra: 2026-10-17 11:21 +07; baseline sau pull: f0fd47a.
 
-Baseline sau clone: repo trống, cả ba tài liệu đích chưa tồn tại (0 từ), chưa có CLAUDE.md, không có instruction hoặc import trong file cần di chuyển. Chỉ tạo ba tài liệu cùng một symlink; không thêm source, skill, agent, dependency, license hoặc governance.
+Git pull --ff-only: PASS, dae7ca1 → f0fd47a; working tree sạch trước và sau pull. Thay đổi mới từ origin được giữ nguyên.
 
-Quyết định: giữ các mục vận hành dưới dạng chưa cấu hình, tập trung reference tại contributor guide và để README.md dẫn liên kết. Không biến đường dẫn tham khảo chưa tồn tại thành import. Phạm vi kiểm chứng là checkout cục bộ.
+Baseline theo wc -w: AGENTS=634, README=206, CONTRIBUTING=1027; memory=0; import=0; một CLAUDE.md hợp lệ tại root, không có AGENTS.md ở subtree.
+
+Quyết định: giữ standing orders và định tuyến lab sau pull; cập nhật evidence, tập trung reference tại contributor guide. RESTART_NOTE.md chỉ đọc theo giới hạn artifact. Không tạo import hay docs root từ governance chưa tồn tại. Chỉ sửa ba tài liệu, giữ symlink; không commit/push.
 
 | Tiêu chí | Expected | Actual |
 | --- | --- | --- |
-| AC-1 | Không có memory cũ; đủ 7 H2; chỉ có standing orders | PASS;memory=0;H2=7/7;rules=standing-orders |
-| AC-2 | Mọi CLAUDE.md là symlink tới AGENTS.md | PASS;symlinks=1/1;target=AGENTS.md |
+| AC-1 | Memory=0; đủ 7 H2; chỉ standing orders | PASS;memory=0;H2=7/7;rules=standing-orders |
+| AC-2 | Mọi alias là symlink tới AGENTS.md | PASS;symlinks=1/1;target=AGENTS.md |
 | AC-3 | Đủ 4 H2 bắt buộc trong README | PASS;H2=4/4 |
 | AC-4 | Keyword công cụ lint: README=0; CONTRIBUTING>=1 | PASS;README=0;CONTRIBUTING=1 |
 | AC-5 | Một H2 Lint and doctor policy | PASS;H2=1 |
-| AC-6 | AGENTS<=1950 từ; bộ khởi tạo ngắn gọn | PASS;AGENTS=634;README=180;CONTRIBUTING=1022 |
-| AC-7 | Fence cân bằng; import hiệu lực được giữ nguyên | PASS;fences=0,0,2;imports=0/0 |
+| AC-6 | AGENTS<=1950 từ; tổng không tăng | PASS;AGENTS=634;README=191;CONTRIBUTING=1034;total=1859<=1867 |
+| AC-7 | Fence cân bằng; giữ import hiệu lực | PASS;fences=0,0,2;imports=0/0 |
 
-Actual được điền từ probe và kiểm tra lại sau khi cập nhật evidence. Kết quả thao tác Git được báo riêng sau khi hoàn tất.
+Actual được kiểm tra lại trên tài liệu cuối.
+
+Bổ sung: PASS; git diff --check, liên kết nội bộ, định dạng rule và vị trí Updated.

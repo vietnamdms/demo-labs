@@ -1,5 +1,5 @@
 # Agent standing orders
-Updated: 2026-10-17 10:19 +07
+Updated: 2026-10-17 11:21 +07
 
 Scope: checkout này và mọi subtree chưa có AGENTS.md riêng.
 

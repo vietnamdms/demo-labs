@@ -1,5 +1,5 @@
 # demo-labs
-Updated: 2026-10-17 11:03 +07
+Updated: 2026-10-17 11:21 +07
 
 Không gian dành cho các bản demo và bài thử nghiệm của vietnamdms.
 
@@ -15,7 +15,7 @@ Không gian dành cho các bản demo và bài thử nghiệm của vietnamdms.
 
 ## Status
 
-Đã có lab [workflow-video-google](workflow-video-google/README.md) gồm 8 skill, helper quản lý project/dựng animatic và bộ kiểm tra cục bộ. Hướng dẫn môi trường, cài đặt và lệnh nằm tại [contributor guide của lab](workflow-video-google/CONTRIBUTING.md).
+Đã có lab [workflow-video-google](workflow-video-google/README.md) gồm 8 skill, helper quản lý project/dựng animatic và bộ kiểm tra cục bộ.
 
 ## System requirements
 
